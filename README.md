@@ -15,16 +15,20 @@ This can be extended to write anything for eg. meta information or value of vari
 PR's are welcome.
 
 ----
+
 _Collection Docs:_
+This collection makes it easy for users who want to write the response of each request to a file.
+This can be extended to write anything for eg. meta information or value of variables being used.
+
 
 This project is using a powerful feature built in postman called as `pm.sendRequest`, the docs for which can be found here: https://www.getpostman.com/docs/v6/postman/scripts/postman_sandbox_api_reference
 
 
-### Requirements
+## Requirements
 To work with this script, a local server is required.
 You can choose to write your own local server or edit the one provided below as per your needs.
 
-### Steps To Use
+## Steps To Use
 1. Put all the requests you want to write the responses for, under this collection.
  
 2. Clone the following repository to your machine - https://github.com/sivcan/ResponseToFile-Postman or use the following command - `git clone https://github.com/sivcan/ResponseToFile-Postman`
@@ -39,9 +43,20 @@ You can modify the local server's code to change the file location.
 5. Run your requests through builder / run through collection runner and store your data locally. 
 
 
-Currently, this supports only writing JSON data.
-You can modify the script and the local server to support CSV or other formats of data as per your needs.
+You can modify the script and the local server to support more data formats / data that you want to write to the file.
 
-### Additionally
+## Additionally
 Instead of moving each request under this collection, you can copy the script from the `Tests` tab of this collection to the `Tests` tab of any request or even a specific folder.
-On running that particular request / folder, it'll work.
+
+**Note:** To access the `Tests` script of this collection:
+1. You need to `Right Click` the `Write Responses To File` collection in the sidebar.
+2. Click on `Edit`
+3. Go to `Tests` tab.
+
+Then you can send that particular request / requests under a folder for which the data needs to be written.
+
+## File Extensions
+You can also modify the **extension** of the file.
+
+**Example:**
+Incase you want to write CSV data to a file, all you need to do is change the `fileExtension` property in the `Tests` script to `csv`.
