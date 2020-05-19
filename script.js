@@ -7,6 +7,7 @@ const express = require('express'),
   folderPath = './Responses/',
   defaultFileExtension = 'json', // Change the default file extension
   bodyParser = require('body-parser'),
+  DEFAULT_MODE = 'writeFile',
   path = require('path');
 
 // Create the folder path in case it doesn't exist
@@ -20,9 +21,12 @@ app.get('/', (req, res) => res.send('Hello, I write data to file. Send them requ
 
 app.post('/write', (req, res) => {
   let extension = req.body.fileExtension || defaultFileExtension,
-    filePath = `${path.join(folderPath, req.body.requestName)}.${extension}`;
+    fsMode = req.body.mode || DEFAULT_MODE;
+    uniqueIdentifier = req.body.uniqueIdentifier ? typeof req.body.uniqueIdentifier === 'boolean' ? Date.now() : req.body.uniqueIdentifier : false,
+    filename = `${req.body.requestName}${uniqueIdentifier || ''}`,
+    filePath = `${path.join(folderPath, filename)}.${extension}`;
 
-  fs.writeFile(filePath, req.body.responseData, (err) => {
+  fs[fsMode](filePath, req.body.responseData, (err) => {
     if (err) {
       console.log(err);
       res.send('Error');
