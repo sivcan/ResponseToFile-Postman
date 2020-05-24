@@ -60,3 +60,11 @@ You can also modify the **extension** of the file.
 
 **Example:**
 In case you want to write CSV data to a file, all you need to do is change the `fileExtension` property in the `Tests` script to `csv`.
+
+
+## File Support
+You can modify the `opts` variable as per your need under the `Tests` tab of the collection, the following features are supported:
+
+1. If you want all the data to be written to a single file then you can modify the value of mode to appendFile instead of writeFile (More functions here: [Node FS](https://nodejs.org/api/fs.html#fs_fs_writefile_file_data_options_callback))
+
+2. If you want each response to be stored in a different file, then you can provide a `uniqueIdentifier` such as `Date.now()` or some environment variable as a counter, and it'll be used generate unique file names. You can also make the value of uniqueIdentifier as `true` and the server will internally append a unique number to every file name.
